@@ -2,8 +2,8 @@
  * 在Node中事件轮询分为：六个阶段：
  *
  *   第1阶段：timers（定时器阶段）
- *       1.计时
- *       2.执行定时器的回调
+ *
+ *      执行定时器的回调
  *
  *   第2阶段：pending callbacks（系统阶段）
  *
@@ -25,18 +25,3 @@
  *
  *   极其特殊的：process.nextTick，能在任意阶段优先被执行。
  * */
-
-setTimeout(function() {
-  console.log('settimeout-----')
-})
-// 表示立即执行函数
-setImmediate(function() {
-  console.log('setImmediate-----')
-})
-
-// 表示立即执行函数 特点: 在轮询过程中,优先触发
-process.nextTick(function() {
-  console.log('Process.nextTick----')
-})
-
-console.log('主线程')

@@ -16,24 +16,3 @@
 //  *
 //  * */
 //#endregion
-
-// 如果一个js文件是在node环境执行, 那么这个文件,在执行的时候,里面代码,会自动被一个函数包裹起来
-
-// let demo = '哈哈'
-// 在node中执行,会被一个函数包裹
-// function (){
-//     let demo = '哈哈'
-// }
-
-// function fn() {
-//   console.log('fn---')
-//   //想要在当前函数体中,查看我是被哪个函数包裹的
-//   // arguments.callee这个属性可以返回当前函数
-//   console.log(arguments.callee.toString())
-// }
-// fn()
-
-let demo = 'haha'
-console.log(arguments.callee.toString())
-console.log(__filename) // 返回当前js文件的绝对路径
-console.log(__dirname) // 返回当前js文件所处的目录的绝对路径
