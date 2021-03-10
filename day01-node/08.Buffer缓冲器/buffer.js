@@ -15,3 +15,14 @@
  const buf = Buffer.from('hello nodexxx') 直接把一个数据转成buffer
 
  * */
+// const buffer = new Buffer(10)
+// console.log(buffer)
+
+// const buffer = Buffer.alloc(10)
+// const buffer1 = Buffer.allocUnsafe(10)
+// buffer1.fill(0)
+// console.log(buffer)
+// console.log(buffer1)
+
+const buffer2 = Buffer.from('hello node')
+console.log(buffer2)
