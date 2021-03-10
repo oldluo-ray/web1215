@@ -18,3 +18,24 @@
  *                 --autoClose ：自动关闭，当数据写入完毕后，自动关闭文件描述符，默认值true
  *                 --start：写入文件的起始点（开始位置）
  * */
+
+// 引入fs模块
+const fs = require('fs')
+// 创建写入流
+// 当我们手动创建写入流的时候,写入流就已经开启了
+const ws = fs.createWriteStream('./test.txt')
+// 要开始写入了
+for (let index = 0; index < 1000; index++) {
+  ws.write('后宫贵妃' + index + '号')
+}
+
+// 关闭写入流的方法
+ws.end()
+
+// 可以监听流的开启和关闭
+ws.on('open', () => {
+  console.log('写入流开启了')
+})
+ws.on('close', () => {
+  console.log('写入流关闭了')
+})
