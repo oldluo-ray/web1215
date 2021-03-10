@@ -16,3 +16,22 @@
 //  *
 //  * */
 //#endregion
+
+// console.log('node执行的js代码,会自动在外面包裹一个函数')
+
+// function fn() {
+//   // arguments.callee指向的是当前函数, 就是fn
+//   console.log(arguments.callee.toString())
+// }
+
+// fn()
+
+//证明当一个js文件在node平台下执行的时候,node会自动创建一个函数,包裹这个js文件中的所有代码
+
+// console.log(arguments.callee.toString())
+
+// function (exports, require, module, __filename, __dirname){}
+console.log(__filename) // 当前js文件的绝对路径
+console.log(__dirname) // 当前js文件所处的文件夹的绝对路径
+// C:\Users\luodi\Desktop\教学资料\教学代码\day01-node\01.NodeJs中函数的特点\node_function.js
+// C:\Users\luodi\Desktop\教学资料\教学代码\day01-node\01.NodeJs中函数的特点

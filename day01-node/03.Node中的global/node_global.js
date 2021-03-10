@@ -14,3 +14,20 @@
  *
  * */
 
+// alert(1111)
+// console.log(global)
+
+setTimeout(() => {
+  console.log('setTimeout')
+})
+
+// 立即执行函数
+setImmediate(() => {
+  console.log('setInmediate')
+})
+
+process.nextTick(() => {
+  console.log('这个回调优先级最高,一定最先执行')
+})
+
+console.log('主线程')
