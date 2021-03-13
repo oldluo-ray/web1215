@@ -57,9 +57,10 @@
     // 利用model对象往集合中添加文档
     // modelObj.create(
     //   {
-    //     id: 3,
-    //     name: 'xxx佩奇',
-    //     age: 18,
+    //     id: 5,
+    //     name: 'yyy佩奇',
+    //     age: 20,
+    //     gender: '女',
     //   },
     //   (err, data) => {
     //     if (err) return console.log('插入错误', err)
@@ -97,10 +98,10 @@
     //   if (err) return console.log('删除失败', err)
     //   console.log('删除成功: ', data)
     // })
-    modelObj.deleteMany({ age: 18 }, (err, data) => {
-      if (err) return console.log('删除失败', err)
-      console.log('删除成功: ', data)
-    })
+    // modelObj.deleteMany({ age: 18 }, (err, data) => {
+    //   if (err) return console.log('删除失败', err)
+    //   console.log('删除成功: ', data)
+    // })
   } catch (err) {
     console.log('数据库连接失败', err)
   }
