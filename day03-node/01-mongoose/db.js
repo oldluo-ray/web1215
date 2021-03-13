@@ -102,6 +102,17 @@
     //   if (err) return console.log('删除失败', err)
     //   console.log('删除成功: ', data)
     // })
+
+    // 了解: 文档对象
+    // const xxxDocument = new modelObj({
+    //   name: 'yyy',
+    //   age: 18,
+    //   id: 4,
+    // })
+    // xxxDocument.save()
+    // 如果增删改查的方法不传入第二个参数,就返回一个promise对象
+    const res = await modelObj.find({ age: 18 })
+    console.log(res)
   } catch (err) {
     console.log('数据库连接失败', err)
   }

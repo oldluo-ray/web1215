@@ -25,3 +25,34 @@ server.listen(5000, err => {
   else console.log('服务器启动成功')
 })
 */
+// 如何使用node原生的api.快速搭建一个后端服务
+// 1. 引入模块 http node提供的系统模块
+const http = require('http')
+// 2. 创建服务器对象
+// request 请求对象,用来接收客户端传过来的信息
+// response 响应对象, 用来将数据返回给客户端
+// 回调函数的执行时机: 当客户端给服务器发送请求的时候
+const app = http.createServer((request, response) => {
+  console.log('客户端发送请求过来了')
+  // 接收客户端传过来的数据
+  const str = request.url
+  const str1 = str.split('?')[1]
+  const queryString = require('querystring')
+  const data = queryString.parse(str1)
+  console.log(data)
+  // 响应给客户端数据
+  //   response.end('ok')
+  // 如果响应中文,出现乱码问题,就执行下面这行代码.
+  // 作用: 相当于服务器告诉客户端,应该使用utf-8解码
+  response.setHeader('content-type', 'text/html;charset=utf8')
+  response.end('完美的响应了.啊哈哈哈')
+})
+
+// 3. 启动服务器
+//端口号:表示计算机中每一个正在运行的应用程序的唯一标识符
+// 常用的端口号: 3000, 5000
+// app.listen(端口号,回调函数)
+app.listen(5000, (err) => {
+  if (err) return console.log('服务器启动失败', err)
+  console.log('服务器启动成功:', 'http://127.0.0.1:5000')
+})
