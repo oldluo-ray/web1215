@@ -69,6 +69,5 @@ app.get('/abc', (req, res) => {
 // 定义/配置路由
 app.get('/', (req, res) => {
   console.log('route1')
-  console.log(req.xxx)
   res.send('ok')
 })
