@@ -38,6 +38,8 @@
 * */
 //#endregion
 const express = require('express')
+// 这个中间件是一个第三方中间件. 作用: 将post请求上传的数据,解析之后,添加到request.body上面.这样在路由的回调函数中,就可以获取到post请求上传上来的数据了
+const bodyParser = require('body-parser')
 
 const app = express()
 
@@ -46,29 +48,14 @@ app.listen(5000, (err) => {
   console.log('服务器启动成功')
 })
 
-// 创建中间件(一般中间件都在路由的上面写)
-// 中间件的意义:在具体的路由的回调函数执行之前,去执行一段代码,完成某个功能
-// req和res对象和后面的中间件的req和res都是同一个
-// next表示下一个中间件
-app.use((req, res, next) => {
-  console.log(1)
-  req.xxx = '测试'
-  next()
-})
-app.use((req, res, next) => {
-  console.log(2)
-  next()
-})
-
-app.get('/abc', (req, res) => {
-  console.log('route2')
-
-  res.send('ok1')
-})
+// 这个中间件,一定要写在路由的上面,因为要先执行中间件,才执行路由
+// const res = bodyParser.urlencoded({ extended: true })
+// console.log(res)
+// app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
 // 定义/配置路由
-app.get('/', (req, res) => {
-  console.log('route1')
-  console.log(req.xxx)
+app.post('/', (req, res) => {
+  console.log(req.body)
   res.send('ok')
 })
