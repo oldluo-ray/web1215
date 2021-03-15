@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 之前的学习中,接触过的所有可以从浏览器中发送请求的方式:
+    
+        1. 直接在浏览器的地址栏发送请求, 只能发送get 
+        2. script标签 也是get请求 
+        3. img 标签 也是get请求
+        4. link标签 也是get请求
+        5. a标签 也是get请求
+        6. form 可以发送get也可以发送post
+    
+    -->
+    <!--  action: 请求的地址. 如果不写,默认请求到当前网页的地址
+          method: 请求方式 默认是get
+          注意: 如果表单项不写name属性,数据无法送给服务器
+    -->
+    <form action="http://127.0.0.1:5000/abc" method="POST">
+      name: <input type="text" name="username" /> <br />
+      password: <input type="password" name="password" /> <br />
+      <input type="submit" />
+    </form>
+
+    <img
+      src="https://mmbiz.qpic.cn/mmbiz_png/73PXzrib2hCFE1K9v1sJKianB5PHNERS6NkibMBUNoGcnGX956cy0y2B9AkthMGcZibl8SSaz1ibS3MibUTcdWnNtDicg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1"
+      alt=""
+    />
+  </body>
+</html>
