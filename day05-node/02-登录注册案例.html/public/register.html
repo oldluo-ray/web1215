@@ -17,6 +17,9 @@
     </form>
 
     <script>
+      const emailReg = /^\w{1,10}@\w{1,20}\.(com|cn)$/
+      const usernameReg = /^\w{6,18}$/
+      const passwordReg = /^\w{6,18}$/
       // 封装一个提示用户输入是否符合要的函数
       // element表示要找谁的下一个span
       // message是提示信息
@@ -28,31 +31,49 @@
         span.textContent = message
         span.style.color = color
       }
-      // 获取元素
-      const email = document.querySelector('input[name=email]')
-      // 给元素注册失去焦点事件 blur
-      email.addEventListener('blur', () => {
+      //  封装一个具体执行表单校验的函数
+      function validator(reqexp, message) {
         // 校验用户输入邮箱地址是否正确
-        const value = email.value
+        const value = this.value.trim()
         // 如果用户没有输入
         if (!value) {
           // 提示
           // 找到email后面的span
-          tip(email, '请输入正确的邮箱', 'red')
+          tip(this, message, 'red')
           return
         }
 
         // 要判断写的邮箱格式是否正确
         //创建正则对象
         // xxx@xxx.com/cn
-        const emailReg = /^\w{1,10}@\w{1,20}\.(com|cn)$/
-        if (emailReg.test(value)) {
+
+        if (reqexp.test(value)) {
           //符合
-          tip(email, 'ok', 'green')
+          tip(this, 'ok', 'green')
         } else {
           //不符合
-          tip(email, '请输入正确的邮箱', 'red')
+          tip(this, message, 'red')
         }
+      }
+      // 获取元素
+      const email = document.querySelector('input[name=email]')
+      const username = document.querySelector('input[name=username]')
+      const password = document.querySelector('input[name=password]')
+      // 给元素注册失去焦点事件 blur
+      email.addEventListener('blur', function () {
+        // 希望validator中的this指向的是事件源,所以使用call
+        validator.call(this, emailReg, '请输入正确的邮箱格式')
+      })
+
+      // 给元素注册失去焦点事件 blur
+      username.addEventListener('blur', function () {
+        // 希望validator中的this指向的是事件源,所以使用call
+        validator.call(this, usernameReg, '请输入正确的用户名格式')
+      })
+      // 给元素注册失去焦点事件 blur
+      password.addEventListener('blur', function () {
+        // 希望validator中的this指向的是事件源,所以使用call
+        validator.call(this, passwordReg, '请输入正确的密码格式')
       })
     </script>
   </body>
