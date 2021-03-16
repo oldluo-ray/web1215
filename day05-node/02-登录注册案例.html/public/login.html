@@ -7,22 +7,18 @@
     <title>Document</title>
   </head>
   <body>
-    <h3>注册页面</h3>
+    <h3>登录页面</h3>
     <!-- 邮箱, 用户名, 密码 -->
-    <form action="http://localhost:5000/register" method="POST">
-      邮箱: <input type="text" name="email" /> <span></span> <br />
+    <form action="http://localhost:5000/login" method="POST">
       用户名: <input type="text" name="username" /> <span></span> <br />
       密码: <input type="password" name="password" /> <span></span> <br />
-      <input type="submit" value="注册" />
+      <input type="submit" value="登录" />
     </form>
 
     <script>
-      const emailReg = /^\w{1,10}@\w{1,20}\.(com|cn)$/
       const usernameReg = /^\w{6,18}$/
       const passwordReg = /^\w{6,18}$/
-      let emailFlag = {
-        flag: false,
-      }
+
       let usernameFlag = {
         flag: false,
       }
@@ -70,16 +66,10 @@
         }
       }
       // 获取元素
-      const email = document.querySelector('input[name=email]')
       const username = document.querySelector('input[name=username]')
       const password = document.querySelector('input[name=password]')
       const btn = document.querySelector('input[type=submit]')
-      // 给元素注册失去焦点事件 blur
-      email.addEventListener('blur', function () {
-        console.log('email失去焦点了')
-        // 希望validator中的this指向的是事件源,所以使用call
-        validator.call(this, emailReg, '请输入正确的邮箱格式', emailFlag)
-      })
+
       // 给元素注册失去焦点事件 blur
       username.addEventListener('blur', function () {
         // 希望validator中的this指向的是事件源,所以使用call
@@ -99,8 +89,7 @@
       btn.onclick = function (e) {
         //判断,以上三个表单项是否都通过表单校验,如果都通过就发送请求,如果有一个没有校验通过,就不发送请求
         // if (不通过的情况) {
-        console.log(emailFlag.flag, usernameFlag.flag, passwordFlag.flag)
-        if (!(emailFlag.flag && usernameFlag.flag && passwordFlag.flag)) {
+        if (!(usernameFlag.flag && passwordFlag.flag)) {
           e.preventDefault()
         }
       }
