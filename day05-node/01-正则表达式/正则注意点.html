@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   const reg = /\d/
+      //   const reg = new RegExp('\\d') //注意: 这种写法: \\d 才是特殊字符 \d
+      //   const res = reg.test('1')
+      //   console.log(res)
+
+      // 分组的注意点:
+      //   const str = '123.123.123'
+      //   // 注意: 限定符默认控制前面的一个字符,但是如果前面是(), 则控制的是()里面的内容
+      //   const reg = /^\d{3}(\.\d{3}){2}$/
+      //   console.log(reg.test(str))
+
+      // 分组的用法2: 快速提取
+      var dateStr = '2016-1-5'
+      var reg = /(\d{4})-(\d{1,2})-(\d{1,2})/
+      if (reg.test(dateStr)) {
+        console.log(RegExp.$1)
+        console.log(RegExp.$2)
+        console.log(RegExp.$3)
+        console.log(RegExp.$4)
+      }
+    </script>
+  </body>
+</html>
