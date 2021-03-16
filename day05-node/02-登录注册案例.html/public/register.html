@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>注册页面</h3>
+    <!-- 邮箱, 用户名, 密码 -->
+    <form action="">
+      邮箱: <input type="text" name="email" /> <span></span> <br />
+      用户名: <input type="text" name="username" /> <span></span> <br />
+      密码: <input type="password" name="password" /> <span></span> <br />
+      <input type="submit" value="注册" />
+    </form>
+
+    <script>
+      // 封装一个提示用户输入是否符合要的函数
+      // element表示要找谁的下一个span
+      // message是提示信息
+      // color 是字体颜色
+      function tip(element, message, color) {
+        // 找到email后面的span
+        const span = element.nextElementSibling
+        //   span.textContent/innnerText/innerHTML
+        span.textContent = message
+        span.style.color = color
+      }
+      // 获取元素
+      const email = document.querySelector('input[name=email]')
+      // 给元素注册失去焦点事件 blur
+      email.addEventListener('blur', () => {
+        // 校验用户输入邮箱地址是否正确
+        const value = email.value
+        // 如果用户没有输入
+        if (!value) {
+          // 提示
+          // 找到email后面的span
+          tip(email, '请输入正确的邮箱', 'red')
+          return
+        }
+
+        // 要判断写的邮箱格式是否正确
+        //创建正则对象
+        // xxx@xxx.com/cn
+        const emailReg = /^\w{1,10}@\w{1,20}\.(com|cn)$/
+        if (emailReg.test(value)) {
+          //符合
+          tip(email, 'ok', 'green')
+        } else {
+          //不符合
+          tip(email, '请输入正确的邮箱', 'red')
+        }
+      })
+    </script>
+  </body>
+</html>
