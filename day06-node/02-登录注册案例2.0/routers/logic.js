@@ -37,13 +37,25 @@ router.post('/login', async (request, response) => {
   if (user) {
     //表示查找到了,登录成功
     // 重定向到一个首页中
-    response.redirect(
-      'http://localhost:5000/index.html?username=' + user.username
-    )
+    // 是前端渲染的重定向的地址
+    // response.redirect(
+    //   'http://localhost:5000/index.html?username=' + user.username
+    // )
+
+    // 后端使用ejs响应数据的重定向地址
+    response.redirect('http://localhost:5000/indexssr')
   } else {
     // 没有找到,登录失败
     response.send('账户名或密码错误')
   }
+})
+
+// 配置后端渲染的路由
+router.get('/indexssr', (req, res) => {
+  // res.render('模板名称', 要动态渲染的数据对象)
+  // res.render一执行,express就会根据之前app.set配置的模板路径去templates目录下查找index.ejs文件,然后将里面数据进行动态渲染,最后渲染完毕之后,响应给浏览器
+  // 注意: 要求第二个参数必须传入一个对象
+  res.render('index', { username: '江鉴哲' })
 })
 
 module.exports = router

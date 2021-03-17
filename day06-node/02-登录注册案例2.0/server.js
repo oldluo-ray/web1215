@@ -19,7 +19,15 @@
   // 配置解析post请求数据的中间件
   app.use(express.urlencoded({ extended: true }))
 
+  // 配置ejs模板引擎,一定要写在路由前面
+  // 告诉express,要使用的模板引擎是ejs
+  app.set("view engine" , "ejs");
+  // 告诉express,对应的模板放在哪里
+  app.set("views","./templates")
+
   // 配置路由
+  // 登录注册逻辑的路由
   app.use(logicRouter)
+  // 响应html页面的路由
   app.use(uiRouter)
 })()

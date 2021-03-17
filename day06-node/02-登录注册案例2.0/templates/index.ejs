@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>登录成功!!</h1>
+    <!-- ejs文件中,可以写html,可以写ejs语法 .下面的尖括号和百分号就是ejs语法,
+      ejs模板引擎要执行.ejs的文件的时候,会将ejs语法结构外面的内容原样输出.
+      但是当执行到ejs语法结构的时候,就会去传入的那个数据对象中,查找对应的变量,并且将变量的值,直接渲染到写ejs结构的地方
+    -->
+    <h3>欢迎您: <span id="un"><%- username %></span></h3>
+  </body>
+</html>
