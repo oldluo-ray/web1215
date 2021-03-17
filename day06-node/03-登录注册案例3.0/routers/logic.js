@@ -41,9 +41,10 @@ router.post('/login', async (request, response) => {
     // response.redirect(
     //   'http://localhost:5000/index.html?username=' + user.username
     // )
-
+    // 如果代码执行到这里,表示登录成功了. 要让浏览器将信息储存在cookie中
+    response.cookie('username', user.username)
     // 后端使用ejs响应数据的重定向地址
-    response.redirect('http://localhost:5000/indexssr')
+    response.redirect('http://localhost:5000/index')
   } else {
     // 没有找到,登录失败
     response.send('账户名或密码错误')
@@ -51,17 +52,17 @@ router.post('/login', async (request, response) => {
 })
 
 // 配置后端渲染的路由
-router.get('/indexssr', (req, res) => {
-  // res.render('模板名称', 要动态渲染的数据对象)
-  // res.render一执行,express就会根据之前app.set配置的模板路径去templates目录下查找index.ejs文件,然后将里面数据进行动态渲染,最后渲染完毕之后,响应给浏览器
-  // 注意: 要求第二个参数必须传入一个对象
-  res.render('index', {
-    username: '江鉴哲',
-    // 注意: 如果传入一个script脚本,那么可能存在安全问题
-    // info: '<script >while(true){console.log(1)}</script>',
-    age: 19,
-    arr: ['长沙名表行', '科勒卫浴', '360搜索虚假广告', '智联招聘贩卖信息']
-  })
-})
+// router.get('/indexssr', (req, res) => {
+//   // res.render('模板名称', 要动态渲染的数据对象)
+//   // res.render一执行,express就会根据之前app.set配置的模板路径去templates目录下查找index.ejs文件,然后将里面数据进行动态渲染,最后渲染完毕之后,响应给浏览器
+//   // 注意: 要求第二个参数必须传入一个对象
+//   res.render('index', {
+//     username: '江鉴哲',
+//     // 注意: 如果传入一个script脚本,那么可能存在安全问题
+//     // info: '<script >while(true){console.log(1)}</script>',
+//     age: 19,
+//     arr: ['长沙名表行', '科勒卫浴', '360搜索虚假广告', '智联招聘贩卖信息']
+//   })
+// })
 
 module.exports = router
