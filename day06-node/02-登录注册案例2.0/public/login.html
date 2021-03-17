@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>登录页面</h3>
+    <!-- 邮箱, 用户名, 密码 -->
+    <form action="http://localhost:5000/login" method="POST">
+      用户名: <input type="text" name="username" /> <span></span> <br />
+      密码: <input type="password" name="password" /> <span></span> <br />
+      <input type="submit" value="登录" />
+    </form>
+
+    <script>
+      const usernameReg = /^\w{6,18}$/
+      const passwordReg = /^\w{6,18}$/
+
+      let usernameFlag = {
+        flag: false,
+      }
+      let passwordFlag = {
+        flag: false,
+      }
+      // 封装一个提示用户输入是否符合要的函数
+      // element表示要找谁的下一个span
+      // message是提示信息
+      // color 是字体颜色
+      function tip(element, message, color) {
+        // 找到email后面的span
+        const span = element.nextElementSibling
+        //   span.textContent/innnerText/innerHTML
+        span.textContent = message
+        span.style.color = color
+      }
+      //  封装一个具体执行表单校验的函数
+      // reqexp 正则
+      // message 提示信息
+      function validator(reqexp, message, tagObj) {
+        // 校验用户输入邮箱地址是否正确
+        const value = this.value.trim()
+        // 如果用户没有输入
+        if (!value) {
+          // 提示
+          // 找到email后面的span
+          tip(this, message, 'red')
+          tagObj.flag = false
+          return
+        }
+
+        // 要判断写的邮箱格式是否正确
+        //创建正则对象
+        // xxx@xxx.com/cn
+
+        if (reqexp.test(value)) {
+          //符合
+          tip(this, 'ok', 'green')
+          tagObj.flag = true
+        } else {
+          //不符合
+          tip(this, message, 'red')
+          tagObj.flag = false
+        }
+      }
+      // 获取元素
+      const username = document.querySelector('input[name=username]')
+      const password = document.querySelector('input[name=password]')
+      const btn = document.querySelector('input[type=submit]')
+
+      // 给元素注册失去焦点事件 blur
+      username.addEventListener('blur', function () {
+        // 希望validator中的this指向的是事件源,所以使用call
+        validator.call(
+          this,
+          usernameReg,
+          '请输入正确的用户名格式',
+          usernameFlag
+        )
+      })
+      // 给元素注册失去焦点事件 blur
+      password.addEventListener('blur', function () {
+        // 希望validator中的this指向的是事件源,所以使用call
+        validator.call(this, passwordReg, '请输入正确的密码格式', passwordFlag)
+      })
+
+      btn.onclick = function (e) {
+        //判断,以上三个表单项是否都通过表单校验,如果都通过就发送请求,如果有一个没有校验通过,就不发送请求
+        // if (不通过的情况) {
+        if (!(usernameFlag.flag && passwordFlag.flag)) {
+          e.preventDefault()
+        }
+      }
+    </script>
+  </body>
+</html>
