@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <form action="" enctype="application/x-www-form-urlencoded"></form> -->
+    <button id="btn">按钮</button>
+    <script>
+      // 1. 目前为止学习过的能够在浏览器中发送请求的方式有哪些?
+      // 浏览器的地址栏  get
+      // a标签(最终也是使用浏览器地址栏发请求) get
+      // script  get 专门用来请求js文件
+      // img  get   专门用来请求图片
+      // link get   常用来请求css文件
+      // form   get/post 同步的,并且页面一定会跳转
+
+      // // 学习ajax 就可以异步的给服务器发送请求,而且可以发送任何方式的请求
+
+      btn.onclick = function () {
+        // 1. 创建xhr
+        // 2. 设置请求首行 调用open
+        // 3. 如果是post请求,要设置请求头,如果不是post请求,是get请求,可以忽略这一步
+        // 4. 发送请求(1.设置请求主体(get直接不写或写null), 2. 发送请求)
+
+        // get请求
+        // 1. 创建xhr
+        // const xhr = new XMLHttpRequest()
+        // // 2. 设置请求首行 调用open
+        // // xhr.open(请求方式, 请求的url)
+        // xhr.open('get', 'http://localhost:5000/test?name=zs')
+        // // 3. 如果是post请求,要设置请求头,如果不是post请求,是get请求,可以忽略这一步
+        // // 4. 发送请求(1.设置请求主体(get直接不写或写null), 2. 发送请求)
+        // xhr.send()
+
+        // console.log('ajax请求发出去了之后的代码')
+
+        // post请求
+        // 1. 创建xhr
+        const xhr = new XMLHttpRequest()
+        // 2. 设置请求首行 调用open
+        xhr.open('post', 'http://localhost:5000/test')
+        // 3. 如果是post请求,要设置请求头,如果不是post请求,是get请求,可以忽略这一步
+        xhr.setRequestHeader(
+          'content-type',
+          'application/x-www-form-urlencoded'
+        )
+        xhr.timeout = 1000 //设置超时时间, 单位是毫秒
+        // 4. 发送请求(1.设置请求主体(get直接不写或写null), 2. 发送请求)
+        xhr.send('name=zs&age=18')
+        console.log('ajax请求发出去了之后的代码')
+
+        // 如何去接收ajax请求的响应
+        // ajax请求是异步的,所以什么时候响应回来是无法确定的
+        xhr.onreadystatechange = function () {
+          // 注意: readyState状态值有5个,但是这个回调只会监听到三个, 2,3,4
+          // console.log(xhr.readyState)
+          if (xhr.readyState === 4) {
+            console.log('请求响应完成了')
+            // 表示请求响应完成了
+            // 注意: 请求响应失败了,也是完成了
+            // 获取状态码
+            // console.log(xhr.status)
+            if (xhr.status === 200) {
+              //表示请求响应成功了
+              //获取请求主体的信息
+              // 服务器响应回来的所有的数据,一定是字符串
+              console.log(xhr.responseText)
+
+              // 获取响应头的信息(了解)
+              // xhr.getAllResponseHeaders()
+              // xhr.getResponseHeader('键')
+              console.log(xhr.getAllResponseHeaders())
+              console.log(xhr.getResponseHeader('content-type'))
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

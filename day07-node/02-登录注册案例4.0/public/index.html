@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>登录成功!!</h1>
+    <h3>欢迎您: <span id="un">xxx</span></h3>
+    <script>
+      // localStorage.setItem('xx', '123')
+      // console.log(localStorage.getItem('xx'))
+      // 注意: 如果要在localStorage中存储对象,要先将对象转成字符串
+      const str = JSON.stringify({ username: 'xxx' })
+      localStorage.setItem('xx', str)
+      const resStr = localStorage.getItem('xx')
+      const res = JSON.parse(resStr)
+      console.log(res)
+    </script>
+  </body>
+</html>

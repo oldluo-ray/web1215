@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>个人页</h3>
+    <span id="un">username</span>
+    <span id="em">email</span>
+    <span id="rd">email</span>
+    <!-- <script src="http://127.0.0.1:5000/ajax.js"></script> -->
+    <script>
+      let user = localStorage.getItem('user')
+
+      user = JSON.parse(user)
+      un.textContent = user.username
+      em.textContent = user.email
+      rd.textContent = user.register_date
+    </script>
+  </body>
+</html>

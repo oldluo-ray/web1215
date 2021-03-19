@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>登录成功!!</h1>
+    <h3>欢迎您: <span id="un">xxx</span></h3>
+    <h3>您的邮箱: <span id="em">xxx</span></h3>
+    <a id="link" href="http://127.0.0.1:5000/userCenter">跳转到个人页</a>
+    <form action="http://127.0.0.1:5000/test">
+      <input type="text" name="test" />
+      <input type="submit" />
+    </form>
+    <!-- <script>
+      const userid = location.search.split('=')[1]
+      link.href += '?userid=' + userid
+      console.log(link.href)
+    </script> -->
+    <script src="http://127.0.0.1:5000/ajax.js">
+      // 如果script标签有src. 那么代码执行到这个script标签的时候,就会发送请求给url
+      // 响应成功之后,会将得到的代码直接放在这个子节点的位置执行
+    </script>
+  </body>
+</html>

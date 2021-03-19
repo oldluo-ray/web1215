@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>个人页</h3>
+    <span id="un">username</span>
+    <span id="em">email</span>
+    <script>
+      const query = location.search
+      //  console.log(query)
+      const arr = query.split('&')
+      // console.log(arr)
+      let obj = {}
+      arr.forEach((item) => {
+        const arr = item.split('=')
+        // console.log(arr)
+        obj[arr[0]] = arr[1]
+      })
+      // console.log(obj)
+      const emstr = obj['email']
+      un.textContent = obj['?username']
+      // encodeURI 是对中文进行编码,变成看起来的乱码形式
+      // decodeURI 是对url编码进行解码
+      em.textContent = decodeURI(emstr)
+    </script>
+  </body>
+</html>
