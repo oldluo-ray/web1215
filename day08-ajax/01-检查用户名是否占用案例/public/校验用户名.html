@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    请求输入用户名: <input type="text" id="username" /><span id="tip"></span>
+    <script>
+      username.onblur = function () {
+        // 1. 获取用户名
+        const username = this.value.trim()
+        // 判断用户名是否为空
+        if (username === '') {
+          tip.style.color = 'red'
+          return (tip.textContent = '请输入正确的用户名')
+        }
+        // 2. 发送请求,上传用户名
+        const xhr = new XMLHttpRequest()
+        xhr.open('post', 'http://localhost:5000/validatorUsername')
+        xhr.setRequestHeader(
+          'content-type',
+          'application/x-www-form-urlencoded'
+        )
+        xhr.send('username=' + username)
+        // 3. 接收响应,根据响应的结果提示用户
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            const obj = JSON.parse(xhr.responseText)
+            // console.log(obj)
+            if (obj.code === 20000) {
+              // 用户名可用
+              tip.textContent = obj.message
+              tip.style.color = 'green'
+            } else {
+              // 用户名不可用
+              // 用户名可用
+              tip.textContent = obj.message
+              tip.style.color = 'red'
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
