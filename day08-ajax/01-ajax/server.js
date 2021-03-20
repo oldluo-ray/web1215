@@ -6,13 +6,20 @@ app.listen(5000, () => {
 
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
+app.use((requset, response, next) => {
+  // 利用cors解决跨域问题:
+  // 第二个值: 表示允许跨域的协议,域名和端口号
+  // 一般就写 * 表示所有的协议,域名,端口号
+  response.set('Access-Control-Allow-Origin', '*')
+  next()
+})
 
 //接口
 app.post('/validatorUsername', (request, response) => {
   // 注意: 实际开发中,上传的参数的属性名都是由后端决定,然后告诉前端,上传的参数的属性必须保持一致
   const { username } = request.body
   //   const { username } = request.query
-  //   console.log(username)
+  console.log(username)
 
   //按照正常的逻辑,应该通过这个username去数据库中查找,但是为了将重心放在前端的代码上,就不做数据库处理了. 所以用一个数组来简单模拟已经注册过的用户名
   const arr = ['钢铁侠', '蜘蛛侠', '蝙蝠侠', '猪猪侠', '大侠', '煎饼侠']
@@ -29,4 +36,12 @@ app.post('/validatorUsername', (request, response) => {
     // 没找到
     response.send({ code: 20000, data: {}, message: '用户可用' })
   }
+})
+
+// 模拟jsonp
+app.get('/jsonptest', (request, response) => {
+  // response.send('const data = {name: "zs", age: 18}')
+  // const { callback } = request.query
+  // response.send(callback + '({name: "zs", age: 18})')
+  response.send('{name: "zs", age: 18}')
 })

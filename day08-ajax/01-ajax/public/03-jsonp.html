@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>利用jsonp解决跨域问题</h3>
+    <button id="btn">按钮</button>
+
+    <script>
+      //  jsonp总结:
+      // 1. jsonp不能发送post请求,因为script标签只能发get请求.(缺点)
+      // 2. jsonp没有兼容性问题.任何浏览器都可以实现(优点)
+      // 3. 一定要上传函数名,上传的时候,属性必须写callback
+
+      // 原理: 利用script标签不受同源策略的影响,给不同源的地址发送请求.然后后台响应的是一个函数调用, 前端要定义这个函数. 最终响应完成之后,这个函数会被调用.具体的数据,会当做实参,传递到函数的形参的位置上
+    </script>
+    <script>
+      //受同源策略限制的内容:
+      // cookie,localStorage...
+      // ajax
+
+      // form发请求是否受同源策略影响?
+      // script是否受同源策略影响?
+      // 地址栏是否受同源策略影响?
+      // 由于script标签不受同源策略的限制,所以可以用来解决跨域问题.这种方式就叫jsonp
+
+      function xxx(data) {
+        console.log(data)
+      }
+
+      btn.onclick = function () {
+        const script = document.createElement('script')
+        script.src = 'http://localhost:5000/jsonptest?callback=xxx'
+        document.body.appendChild(script)
+      }
+
+      // 优化: 不要直接在打开html的时候就立刻发送jsonp.而是在需要的使用发送
+    </script>
+    <!-- <script src="http://localhost:5000/jsonptest?callback=xxx"> -->
+    <!-- // 浏览器执行到这个script标签的时候,发现有src属性,就会根据src属性所指向的url地址发送请求. 请求成功之后,相应的内容,直接当做js放在这个位置上执行
+      // alert(1)
+      // {name: "zs", age: 18} 这样无法操作这个对象
+      // const data = {name: "zs", age: 18} 这样data是在全局,所以可能会导致全局变量污染
+      // fn({name: "zs", age: 18}) -->
+    <!-- </script> -->
+  </body>
+</html>

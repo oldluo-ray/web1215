@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>利用cors解决跨域问题</h3>
+    <button id="btn">按钮</button>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script>
+      //   $('#btn').on('click', function () {
+      //     $.ajax({
+      //       url: 'http://localhost:5000/jsonptest',
+      //       dataType: 'json',
+      //       success: function (data) {
+      //         console.log(data)
+      //       },
+      //     })
+      //   })
+
+      // 2. 发送请求,上传用户名
+      const xhr = new XMLHttpRequest()
+      xhr.open('get', 'http://localhost:5000/jsonptest')
+      // 如果请求头不写或写错了,post请求照样可以发送给服务器,服务器的路由也可以接收到这个请求,但是上传的数据,服务器就获取不到了
+      //   xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
+      //   xhr.send('username=' + username)
+      xhr.send()
+      // 3. 接收响应,根据响应的结果提示用户
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log(xhr.responseText)
+          // 注意:JSON.parse解析必须使用严格的json格式
+          const obj = JSON.parse('{"name":"zs","age":18}')
+          console.log(obj)
+        }
+      }
+    </script>
+  </body>
+</html>
