@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    请求输入用户名: <input type="text" id="username" /><span id="tip"></span>
+    <!-- 引入js的方式: 1. 下载jquery.js到本地,然后引入 2. 引入一个cdn的地址(在线的jquery.js) -->
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
+    <script>
+      $('#username').on('blur', function () {
+        // console.log(this)
+        // this是input的dom对象
+        // $(this) 将一个dom对象转成jq对象,就是使用$(dom对象)
+        const value = $(this).val().trim()
+        if (value === '') {
+          $('#tip').text('请输入正确的用户名') // 类似于textContent和innerText
+          // $('#tip').html('<h3>abc</h3>') 类似于innerHTML
+          $('#tip').css('color', 'red')
+          return
+        }
+        // 发送ajax请求
+        $.ajax({
+          url: 'http://localhost:5000/validatorUsername',
+          data: {
+            username: value,
+          },
+          type: 'POST',
+          dataType: 'json', // 在成功的回调中,可以直接拿到一个对象
+          beforeSend: function () {
+            console.log('请求发送之前调用')
+            // return false
+            // 如果不写return或显式的写了return true 就继续发送请求
+            // 如果显式的写了return false 就不发送请求
+          },
+          success: function (data) {
+            // console.log(data, '成功了')
+            data.code === 20000
+              ? $('#tip').text(data.message).css('color', 'green')
+              : $('#tip').text(data.message).css('color', 'red')
+          },
+          error: function (xhr) {
+            console.log(xhr, '失败了')
+          },
+          complete: function () {
+            console.log('请求-响应完成了')
+          },
+        })
+      })
+    </script>
+  </body>
+</html>
