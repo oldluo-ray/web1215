@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   && ||
+
+      //   console.log(true && false)
+      //   console.log(true || false)
+
+      //   console.log('1' && '0') //返回的是后面的那个
+      //   console.log('1' && 0) //&&要求两边都是true,后面的0表示false也是返回0
+      //   console.log(0 && '') //前面直接是false, 短路后面值就不执行了, 返回直接返回0
+      // 小结: 与逻辑,如果两边都是true,返回后面的值,如果一边是false,就返回是false的那个,如果两边都是false,就返回第一个
+      //   console.log('1' || '0') //前面是true,短路后面不看了,最终返回 '1'
+      //   console.log('1' || 0) //前面是true,短路后面不看了,最终返回 '1'
+      //   console.log(0 || '1') //前面是false,继续往后看,后面转成布尔是true, 最终返回后面的值
+      //   console.log(0 || '') //两边都是false,最终返回后面的
+      // 小结: 或逻辑, 如果两边都是true, 返回第一个, 如果一个是true,一个是false,返回为true那个值, 如果两边都是false,返回后面
+
+      console.log(5 - 4 && typeof [] === 'object')
+      console.log(1 && true)
+    </script>
+  </body>
+</html>
