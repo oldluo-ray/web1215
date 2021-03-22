@@ -48,12 +48,11 @@ function ajax(options) {
   //   type = type || 'get'
   // 创建xhr对象
   const xhr = new XMLHttpRequest()
+  //判断有没有传入data,如果有,就将data对象转成键值对的字符串,如果没有就不转
+  data = data && json2Str(data)
   // 调用open方法
   // 如果是post请求,open方法直接里面传入type和url
   // 但是如果是get请求,就需要将data传入的数据,拼接到url后面
-
-  data = data && json2Str(data)
-
   if (type === 'get' && data) {
     url += '?' + data
     data = null

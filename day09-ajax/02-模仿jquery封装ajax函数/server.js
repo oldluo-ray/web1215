@@ -2,7 +2,7 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 app.listen(5000, (err) => {
-  if (err) return console.log('服务器启动成功')
+  if (err) return console.log('服务器启动失败')
   console.log('服务器启动成功')
 })
 app.use(cors())
