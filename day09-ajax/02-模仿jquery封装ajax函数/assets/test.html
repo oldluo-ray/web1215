@@ -6,5 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <button id="btn">按钮</button>
+    <!-- <script src="./ajax.js"></script> -->
+    <script src="./ajax-promise.js"></script>
+    <script>
+      btn.onclick = async function () {
+        // ajax({
+        //   url: 'http://localhost:5000/test',
+        //   data: { name: 'zs', age: 28 },
+        //   type: 'get',
+        //   // beforeSend: function () {},
+        //   success: function (data) {
+        //     console.log(data)
+        //   },
+        //   error: function () {
+        //     console.log('错误了')
+        //   },
+        //   beforeSend: function () {
+        //     console.log('请求发送之前')
+        //   },
+        //   complete: function () {
+        //     console.log('请求响应完成')
+        //   },
+        // })
+
+        // 配合promise的ajax
+        const res = await ajax({
+          url: 'http://localhost:5000/test',
+          data: { name: 'zs', age: 28 },
+          type: 'get',
+        })
+
+        console.log(res)
+      }
+    </script>
+  </body>
 </html>

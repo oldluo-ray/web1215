@@ -53,15 +53,20 @@ function ajax(options) {
   // 调用open方法
   // 如果是post请求,open方法直接里面传入type和url
   // 但是如果是get请求,就需要将data传入的数据,拼接到url后面
-  if (type === 'get' && data) {
+  if (type.toLowerCase() === 'get' && data) {
     url += '?' + data
     data = null
   }
   xhr.open(type, url)
   // 设置请求头
-  type === 'post' &&
+  type.toLowerCase() === 'post' &&
     xhr.setRequestHeader('content-type', 'application/x-www-form-urlencoded')
 
+  // 请求发送之前
+  // res的值的可能性:
+  //1. beforeSend没有写,那就是undefined. 2. 写了.但是里面没有显式的返回,结果也是undefined 3. 显式的写了return true, 返回值就是true 4. 显式的写了return false,返回值就是false
+  const res = beforeSend && beforeSend()
+  if (res === false) return
   // 发送请求
   // if (type === 'get') {
   //   xhr.send()
@@ -74,8 +79,12 @@ function ajax(options) {
   xhr.onreadystatechange = function () {
     // 判断是否完成
     if (xhr.readyState === 4) {
+      complete && complete()
       // 判断是否成功
       if (xhr.status === 200) {
+        success && success(xhr.responseText)
+      } else {
+        error && error()
       }
     }
   }

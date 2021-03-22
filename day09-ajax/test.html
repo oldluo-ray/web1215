@@ -7,6 +7,7 @@
     <title>Document</title>
   </head>
   <body>
+    <button id="btn">按钮</button>
     <script>
       //   && ||
 
@@ -25,6 +26,21 @@
 
       // console.log(5 - 4 && typeof [] === 'object')
       // console.log(1 && true)
+
+      btn.onclick = function () {
+        const xhr = new XMLHttpRequest()
+        xhr.open('POST', 'http://localhost:5000/test')
+        xhr.setRequestHeader(
+          'content-type',
+          'application/x-www-form-urlencoded'
+        )
+        xhr.send('name=zs&age=18')
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            console.log(xhr.responseText)
+          }
+        }
+      }
     </script>
   </body>
 </html>
