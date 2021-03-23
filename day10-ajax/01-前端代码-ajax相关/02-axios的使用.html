@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="template-web.js"></script>
+
+    <script>
+      btn.onclick = async function () {
+        // axios({
+        //     url: '请求地址',
+        //     method: '请求方式',
+        //     data: {}, post/put/delete等请求方式传递数据的属性
+        //     params: {} get请求方式传递数据的属性
+        // })
+        // 返回的是一个promise
+
+        // const res = await axios({
+        //   url: 'http://localhost:5000/test',
+        //   method: 'get',
+        //   params: {
+        //     name: 'zs',
+        //   },
+        // })
+
+        // 注意: 原生的ajax和jquery的ajax方法,在使用post请求方式发送请求的时候,
+        // 上传的参数都是urlencode格式的 键=值
+        // 当时axios发送post请求时数据的上传格式是json格式的
+        const res = await axios({
+          // 一个完整的url地址,也叫绝对路径
+          // 如果url地址是一个绝对路径,那请求就直接发送给这个绝对路径所指向的地址
+          //   url: 'http://localhost:5000/test',
+          // 如果url地址是一个相对路径,那么相对的是这个html页面的协议,域名,端口号
+          url: '/test',
+          method: 'post',
+          data: {
+            name: 'zs',
+          },
+        })
+
+        console.log(res)
+      }
+    </script>
+  </body>
+</html>

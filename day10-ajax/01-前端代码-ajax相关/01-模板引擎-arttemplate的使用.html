@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">按钮</button>
+    <ul id="ul"></ul>
+    <!-- 1. 引入js -->
+    <script src="template-web.js"></script>
+    <script>
+      btn.onclick = function () {
+        const xhr = new XMLHttpRequest()
+        xhr.open('get', 'http://localhost:5000/test')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            // console.log(xhr.responseText)
+            const arr = JSON.parse(xhr.responseText)
+            console.log(arr)
+
+            // 要将数据和模板拼接在一起
+            // template('模板名字', 数据对象) 返回拼接好的字符串
+            const res = template('mytemp', { arr })
+            console.log(res)
+            ul.innerHTML = res
+          }
+        }
+      }
+    </script>
+    <!-- 2. 定义模板 
+        注意:1. 哪些html结构要被动态渲染,就将这个结构直接放在script标签里面
+        2. type属性的作用: 告诉浏览器里面不是js.不要执行
+        3. id属性的作用: 给当前模板定义唯一标识符
+        
+
+        注意: 
+          如果某个html结构需要被拼接多次,就用{{each}}{{/each}} 包裹
+
+          each arr 表示要遍历arr这个数组. 由于arr是传入对象的属性,所以可以直接使用
+
+          在{{each}}{{/each}}这个结构里面$value 和 $index有这两个参数
+          $value表示数组中的每一项
+          $index表示数组中的下标
+
+          arr.forEach((item,index)=>{})
+    -->
+
+    <script type="text/html" id="mytemp">
+      {{each arr}}
+        <li>
+          <h3>{{$value.id}}</h3>
+          <p>{{$value.username}}</p>
+          <p>{{$value.age}}</p>
+          {{if $value.gender === 1}}
+            <p>男</p>
+          {{else}}
+            <p>女</p>
+          {{/if}}
+          <ul>
+            {{each $value.hobby v i}}
+              <li>{{v}}</li>
+            {{/each}}
+          </ul>
+        </li>
+      {{/each}}
+    </script>
+  </body>
+</html>
