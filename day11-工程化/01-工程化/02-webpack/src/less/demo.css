@@ -1,0 +1,18 @@
+.demo {
+  background-color: red;
+}
+.demo .far {
+  border: 1px solid blue;
+}
+.imgs {
+  width: 200px;
+  height: 200px;
+  background-size: 100%;
+  border: 10px solid pink;
+}
+.react {
+  background-image: url('../images/react.jpg');
+}
+.vue {
+  background-image: url('../images/vue.png');
+}

@@ -1,0 +1,9 @@
+.far {
+  width: 100px;
+  height: 100px;
+}
+.far .son {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
