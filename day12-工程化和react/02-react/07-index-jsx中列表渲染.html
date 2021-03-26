@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demo {
+        border: 10px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意:引入的顺序不能错误,先引入react.js,后因react-dom.js -->
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <!-- 如果不写text/babel. babel包就不会将jsx转成React.createElement -->
+    <script type="text/babel">
+      const arr = ['吃饭', '睡觉', '打豆豆']
+      // 需求: 根据arr的长度,决定渲染多少个li标签
+      // 在jsx的插值表达式中,可以直接传入数组,react会将数组中的所有元素,自动渲染到页面上
+      // 所以: 我们可以根据arr数组,得到一个存放了li标签的数组.然后直接渲染这个li标签的数组就可以实现列表渲染了
+      // [<li>吃饭</li>, <li>睡觉</li>, <li>打豆豆</li>]
+
+      // let newArr = []
+      // arr.forEach((item) => {
+      //   newArr.push(<li>{item}</li>)
+      // })
+      // const ul = <ul>{newArr}</ul>
+
+      // const newArr = arr.map((item) => {
+      //   return <li>{item}</li>
+      // })
+      // 注意: 在列表渲染的时候,react要求给每一个结构加上一个key属性,属性的值不能重复. 这是为了底层执行的性能
+      const newArr = arr.map((item, index) => (
+        // 不管jsx结构多复杂,key属性一定是加在列表渲染的最外层元素上
+        <li key={index}>
+          <span>{item}</span>
+        </li>
+      ))
+      const ul = <ul>{newArr}</ul>
+
+      ReactDOM.render(ul, document.getElementById('root'))
+    </script>
+  </body>
+</html>

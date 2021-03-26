@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意:引入的顺序不能错误,先引入react.js,后因react-dom.js -->
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <!-- 如果不写text/babel. babel包就不会将jsx转成React.createElement -->
+    <script type="text/babel">
+      // 创建元素(不是真正的dom元素):
+      //属性 :对象的形式
+      //   React.createElement('标签名', 属性, 子节点, 子节点....) 返回一个react对象(元素)(虚拟dom)
+        const h1 = React.createElement(
+          'h1',
+          { id: 'title' },
+          '这是h1的内容',
+          '测试'
+        )
+
+      // 推荐方式:
+      //   const h1 = (
+      //     <h1 id="title" className="demo">
+      //       '这是h1的内容', '测试'
+      //     </h1>
+      //   )
+      // 注意:如果要写属性,有些属性比较特殊,比如:class要写成className
+      const label = <label htmlFor="a"></label>
+
+      // 将h1渲染到页面上
+      // render执行的时候,react底层会根据react元素(h1),创建真实的dom元素,然后将真实的dom元素添加到页面上
+      ReactDOM.render(label, document.getElementById('root'))
+    </script>
+  </body>
+</html>

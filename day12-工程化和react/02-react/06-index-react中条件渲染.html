@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demo {
+        border: 10px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意:引入的顺序不能错误,先引入react.js,后因react-dom.js -->
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <!-- 如果不写text/babel. babel包就不会将jsx转成React.createElement -->
+    <script type="text/babel">
+      let box //这个变量用于存储要渲染的结构
+      let isLoading = false // 这个变量用于标记响应有没有回来
+
+      // if (isLoading) {
+      //   box = <div>loading...</div>
+      // } else {
+      //   box = <div>数据渲染成功</div>
+      // }
+
+      // box = isLoading ? <div>loading...</div> : <div>数据渲染成功</div>
+
+      // 另外一种请求: 只有一个盒子,只控制这个盒子是否展示
+      // 注意:如果要渲染一个boolean值,那么在页面上是看不到的
+      // box = isLoading && <div>loading...</div>
+
+      ReactDOM.render(box, document.getElementById('root'))
+    </script>
+  </body>
+</html>

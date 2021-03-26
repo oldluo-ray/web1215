@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demo {
+        border: 10px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意:引入的顺序不能错误,先引入react.js,后因react-dom.js -->
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <!-- 如果不写text/babel. babel包就不会将jsx转成React.createElement -->
+    <script type="text/babel">
+      function fn() {
+        console.log('事件触发了')
+      }
+
+      // 注册事件:
+      // 1. 跟dom的事件名是一样的
+      // 2. 给谁注册,就在谁的上面写onXXX就可以了
+      // 3. 注册事件要写成小驼峰命名法
+      const h1 = (
+        <h1 onClick={fn}>
+          注册事件
+          <div
+            style={{ width: 200, height: 200, border: '1px solid blue' }}
+            onMouseEnter={function () {
+              console.log('鼠标移入divl')
+            }}
+          ></div>
+        </h1>
+      )
+
+      // 将h1渲染到页面上
+      // render执行的时候,react底层会根据react元素(h1),创建真实的dom元素,然后将真实的dom元素添加到页面上
+      ReactDOM.render(h1, document.getElementById('root'))
+    </script>
+  </body>
+</html>

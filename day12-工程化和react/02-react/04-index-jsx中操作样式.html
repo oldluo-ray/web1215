@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demo {
+        border: 10px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意:引入的顺序不能错误,先引入react.js,后因react-dom.js -->
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <!-- 如果不写text/babel. babel包就不会将jsx转成React.createElement -->
+    <script type="text/babel">
+      const info = '如何在jsx中操作样式'
+      // 推荐方式:
+      // 添加样式有两种形式:
+      // 1. style 行内样式
+      // 2. className 使用类名
+      // const styleObj =
+      const h1 = (
+        <h1
+          id="title"
+          style={{
+            color: 'pink',
+            // css中复合属性要写成小驼峰命名法
+            backgroundColor: 'deeppink',
+            // 如果只有单位,可以忽略单位
+            fontSize: 50,
+          }}
+          className="demo"
+        >
+          {info}
+        </h1>
+      )
+
+      // 将h1渲染到页面上
+      // render执行的时候,react底层会根据react元素(h1),创建真实的dom元素,然后将真实的dom元素添加到页面上
+      ReactDOM.render(h1, document.getElementById('root'))
+    </script>
+  </body>
+</html>

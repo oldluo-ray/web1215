@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .demo {
+        border: 10px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- 注意:引入的顺序不能错误,先引入react.js,后因react-dom.js -->
+    <script src="js/react.development.js"></script>
+    <script src="js/react-dom.development.js"></script>
+    <script src="js/babel.min.js"></script>
+
+    <!-- 如果不写text/babel. babel包就不会将jsx转成React.createElement -->
+    <script type="text/babel">
+      // 事件对象的注意点:
+      // 1. 事件对象其实是react包装后的合成事件
+      // 2. 控制台打印默认看不到属性的值,但是可以直接获取属性的值 e.target
+      // 3. this的指向是undefined
+      // 4. a标签的点击事件中return false无效,应该使用e.preventDefault()
+
+      // function fn(e) {
+      //   // 默认把e输出到控制台,看不到对应属性的值,但是可以直接访问.
+      //   // 如果想在控制台查看e的属性的值,直接调用下面的方法即可
+      //   e.persist()
+      //   // 这个事件对象平时也就称呼为事件对象.但是react中给他起了一个名字叫合成事件
+      //   console.log(e.target)
+      //   console.log(e)
+      //   //在react中的事件处理函数中this默认执行undefined
+      //   // 原因: 因为babel编译后,变成了严格模式
+      //   console.log(this)
+      // }
+      // const div = <div onClick={fn}>事件对象</div>
+
+      function fn1(e) {
+        // 阻止a标签的默认行为
+        // return false // 在react中阻止a标签的默认行为return false无效
+        e.preventDefault()
+      }
+      const link = (
+        <a href="http://www.atguigu.com" onClick={fn1}>
+          超链接
+        </a>
+      )
+
+      ReactDOM.render(link, document.getElementById('root'))
+    </script>
+  </body>
+</html>
