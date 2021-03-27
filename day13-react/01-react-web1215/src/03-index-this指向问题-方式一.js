@@ -15,28 +15,31 @@ class Header extends React.Component {
     }
   }
 
-  // es6中类当中定义函数的写法: 这种写法,是将这个函数加到了原型上
-  // handle() {
-  //   this.setState({
-  //     count: this.state.count + 1,
-  //   })
-  // }
-
-  // es7中在类里面定义函数的写法: 这种写法,是将函数直接加到了实例身上
-  // 由于函数直接加到了实例上面.所以react底层想要调用这个函数,就必须使用当前组件实例.handle() 去调用. 既然是对象调用模式,那函数体中的this就指向对象
-  // 代码被babel编译. 所以可以放心使用
-  handle = () => {
+  // 这个函数添加到哪里(加到原型上了)
+  handle() {
+    // 我们自定义的原型上的方法的this默认执行undefined
+    // 由于此时handle是被组件实例调用的.所以,这时this指向当前组件实例
     this.setState({
+      // 修改哪个数据,就写哪个数据,不修改的不用写
       count: this.state.count + 1,
     })
   }
 
   render() {
+    // render函数会被调用多次. 所以一般不在render函数中定义函数
     return (
       <div>
         <p>{this.state.count}</p>
-        {/* 当点击按钮的时候,底层相当于是对象调用 */}
-        <button onClick={this.handle}>+</button>
+        <button
+          onClick={() => {
+            // 外层箭头函数才是真正的事件处理函数
+            // 这个this其实是render的this.就指向当前组件实例
+            // 当前组件实例可以调用原型上的方法
+            this.handle()
+          }}
+        >
+          +
+        </button>
         <p>{this.state.msg}</p>
         <p>{this.state.arr}</p>
       </div>
