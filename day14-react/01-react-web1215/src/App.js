@@ -7,8 +7,13 @@ export default class App extends Component {
   state = {
     list: [
       {
-        id: 1,
+        id: 2,
         todoName: '吃饭',
+        isDone: false,
+      },
+      {
+        id: 1,
+        todoName: '睡觉',
         isDone: false,
       },
     ],
@@ -35,6 +40,35 @@ export default class App extends Component {
       list,
     })
   }
+
+  // 定义函数,用来接收Item组件传递过来的id
+  getTodoId = (id) => {
+    // 根据id,找到任务对象,修改isDone的值(取反)
+    let { list } = this.state
+    list.forEach((item) => {
+      if (item.id === id) {
+        item.isDone = !item.isDone
+      }
+    })
+    this.setState({
+      list,
+    })
+  }
+  // 获取id,删除任务
+  getTodoIdDel = (id) => {
+    // console.log(id)
+    const { list } = this.state
+    // filter方法用于过滤数组的数据, 返回一个过滤之后的新的数组
+    // 如果在回调函数执行的时候,返回的值是true,则这条数据,添加到新数组中.
+    // 如果返回的是false.则这条数据被过滤掉了
+    const newList = list.filter((item) => {
+      return item.id !== id
+    })
+    this.setState({
+      list: newList,
+    })
+  }
+
   render() {
     const { list } = this.state
     return (
@@ -42,7 +76,14 @@ export default class App extends Component {
         <div className="todo-wrap">
           {/* 将接收任务名的函数,通过props传递给header */}
           <Header getTodoName={this.getTodoName}></Header>
-          <List list={list}></List>
+
+          {/*要将给list组件传递数据 */}
+
+          <List
+            list={list}
+            getTodoId={this.getTodoId}
+            getTodoIdDel={this.getTodoIdDel}
+          ></List>
           <Footer></Footer>
         </div>
       </div>

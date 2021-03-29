@@ -26,6 +26,7 @@ export default class Header extends Component {
   }
 
   render() {
+   
     const { todoName } = this.state
     return (
       <div className="todo-header">
