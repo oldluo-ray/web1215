@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 export default class Login extends Component {
   render() {
-    const { username, password, handle } = this.props
+    const { username, password, handle, test } = this.props
+    console.log(test)
     return (
       <div>
         <h1>登录</h1>
