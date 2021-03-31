@@ -33,14 +33,7 @@ import React, { Component } from 'react'
  * Link组件用来修改浏览器地址栏的路径的. Link组件中其实就包裹的是一个a标签, 并且阻止了a标签的默认行为
  *
  */
-import {
-  BrowserRouter as Router,
-  Link,
-  Route,
-  Switch,
-  Redirect,
-  NavLink,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
 // import { HashRouter as Router, Link, Route } from 'react-router-dom' 不推荐使用
 import Home from './pages/Home'
 import Detail from './pages/Detail'
@@ -52,18 +45,48 @@ export default class App extends Component {
         <Router>
           <div>
             {/* 注意Link一定要写在Router的范围内 */}
-            <NavLink to="/index" activeClassName="selected">
-              首页
-            </NavLink>
-            <NavLink to="/detail" activeClassName="selected">
-              详情页
-            </NavLink>
+            <Link to="/index">首页</Link>
+            <Link to="/detail">详情页</Link>
 
-            <Switch>
-              <Route path="/index" component={Home}></Route>
-              <Route path="/detail" component={Detail}></Route>
-              <Redirect from="/index" to="/detail"></Redirect>
-            </Switch>
+            {/* 配置路由规则 
+              Route组件也要写在Router中
+              path指定路由规则中的路径
+              component指定路由规则中的视图  而react中每一个视图就是就是一个组件
+            */}
+
+            {/* 
+              当路径发生变化的时候,Router组件会遍历所有的Route. 
+              让Route的path和浏览器的地址栏的pathname进行比较 
+
+              比较的规则: 
+                模糊匹配(默认): 
+                   pathname 以 path 开头即可.
+                  
+                 
+
+                精确匹配: 
+                   pathname 和 path 相等 
+                   开启精确匹配: 在Route组件上添加一个属性exact
+                   注意:添加了exact属性的Route是精确匹配
+                   没有添加这个exact属性的Route还是模糊匹配
+            
+            
+            */}
+            <Route path="/" component={Home} exact></Route>
+            {/* 探讨: pathname 是 /indexabc 或 /index/abc 是否可以和path /index匹配成功 
+              结论: 
+                pathname: /   可以
+                pathname: /indexabc  不可以
+                pathname: /index/abc  可以
+
+                path: /index
+
+                /indexabc 不能匹配 /index 
+                /index/abc 可以匹配/index
+                总结: pathname要和path相等或pathname比path长才有可能匹配成功. 匹配的时候是按照路径的分级去比较的
+            */}
+            <Route path="/index" component={Home}></Route>
+            <Route path="/detail" component={Detail}></Route>
           </div>
         </Router>
       </>

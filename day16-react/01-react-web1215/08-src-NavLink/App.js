@@ -44,7 +44,7 @@ import {
 // import { HashRouter as Router, Link, Route } from 'react-router-dom' 不推荐使用
 import Home from './pages/Home'
 import Detail from './pages/Detail'
-
+import './App.css'
 export default class App extends Component {
   render() {
     return (
@@ -58,10 +58,24 @@ export default class App extends Component {
             <NavLink to="/detail" activeClassName="selected">
               详情页
             </NavLink>
-
+            {/* 路径发生变化的时候,所有Route去和pathname进行匹配.如果前面的一个匹配成功了,也不会停止,后面还会继续匹配 */}
+            {/* 
+            Switch 组件的作用: 当前面的Route匹配成功了,那后面的就不会再去匹配了 性能较好
+            注意: Switch主要就是用来包裹Route组件的
+            */}
+            {/* <Switch>
+             
+              <Route path="/index" component={Home}></Route>
+              <Route path="/detail" component={Detail}></Route>
+              <Route path="/" component={Home}></Route>
+            </Switch> */}
             <Switch>
               <Route path="/index" component={Home}></Route>
               <Route path="/detail" component={Detail}></Route>
+              {/* 注意: Redirect 是用来重定向, 主要是修改浏览器地址栏的路径 
+                      如果要写from, 要配合Switch. 否则from没有效果
+              
+              */}
               <Redirect from="/index" to="/detail"></Redirect>
             </Switch>
           </div>
