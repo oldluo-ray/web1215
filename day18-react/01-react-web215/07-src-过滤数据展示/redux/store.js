@@ -1,7 +1,5 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
-// 控制users的reducer
+import { createStore, applyMiddleware } from 'redux'
 import userReducer from './reducer'
-import flagreducer from './flagreducer'
 
 // 引入redux-thunk
 import thunk from 'redux-thunk'
@@ -13,15 +11,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 // process.env.NODE_ENV可以获取到当前的代码的执行环境
 console.log(process.env.NODE_ENV)
 // 目的是为了在redux中可以发送异步请求
-
-// 将多个reducer合并成一个
-const rootRecuder = combineReducers({
-  userReducer,
-  flagreducer,
-})
 export default createStore(
-  rootRecuder,
-  // {},用于初始化数据的. 这种一般不用,知道有这个功能就行了
+  userReducer,
   process.env.NODE_ENV === 'development'
     ? composeWithDevTools(applyMiddleware(thunk))
     : applyMiddleware(thunk)

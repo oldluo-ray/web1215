@@ -1,15 +1,12 @@
-import { SAVE_DATA, CHANGE_FLAG } from './constants'
+import { SAVE_DATA } from './constants'
 import axios from 'axios'
 
 // 定义返回action对象的函数
-// 这些函数有个统一的名字叫actionCreator
-// 这种直接return 对象的叫同步action
 function saveData(data) {
   return { type: SAVE_DATA, data }
 }
 
 // 为了配合redux-thunk实现在redux发送异步请求的目的,需要在actions中定义一个函数
-// 这种直接return 函数的的叫异步action
 function getData(searchName) {
   // 当getData执行的时候,redux-thunk会自动调用这个内层的函数
   return async (dispatch) => {
@@ -27,9 +24,4 @@ function getData(searchName) {
   }
 }
 
-// 修改flag的需求
-function changeFlag(data) {
-  return { type: CHANGE_FLAG, data }
-}
-
-export { getData, changeFlag }
+export { getData }

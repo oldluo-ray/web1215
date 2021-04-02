@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { SAVE_DATA } from './constants'
 const initState = {
   users: [],
@@ -10,7 +11,6 @@ export default function (state = initState, action) {
         ...state,
         users: action.data,
       }
-
     default:
       return state
   }

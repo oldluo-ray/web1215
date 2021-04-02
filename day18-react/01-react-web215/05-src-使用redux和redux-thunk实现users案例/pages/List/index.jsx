@@ -20,7 +20,6 @@ export default class List extends Component {
       if (data.length === 0) return
       // 发送请求
       this.props.getData(data)
-      // 没有只是用redux-thunk之前的写法
       // axios
       //   .get('http://localhost:5000/search/users', {
       //     params: {
@@ -42,51 +41,23 @@ export default class List extends Component {
     PubSub.unsubscribe(this.token)
   }
   render() {
-    console.log(this.props)
     let users = this.props.users
-    let flag = this.props.flag
-    let newUsers = [...users]
     // console.log(this.props)
     if (users.length > 0) {
-      // 如果flag的值是zs,就对数据进行过滤
-      if (flag === 'zs') {
-        newUsers = newUsers.filter((item) => {
-          return item.login === 'zs'
-        })
-      }
-
       return (
-        <>
-          <button
-            onClick={() => {
-              //点击按钮,修改redux中flag的值
-              this.props.changeFlag('all')
-            }}
-          >
-            all
-          </button>
-          <button
-            onClick={() => {
-              //点击按钮,修改redux中flag的值
-              this.props.changeFlag('zs')
-            }}
-          >
-            zs
-          </button>
-          <div className="row">
-            {newUsers.map((user) => (
-              <div className="card" key={user.id}>
-                <a target="_blank">
-                  <img
-                    src={user.avatar_url}
-                    style={{ width: 100, height: 100 }}
-                  />
-                </a>
-                <p className="card-text">{user.login}</p>
-              </div>
-            ))}
-          </div>
-        </>
+        <div className="row">
+          {users.map((user) => (
+            <div className="card" key={user.id}>
+              <a target="_blank">
+                <img
+                  src={user.avatar_url}
+                  style={{ width: 100, height: 100 }}
+                />
+              </a>
+              <p className="card-text">{user.login}</p>
+            </div>
+          ))}
+        </div>
       )
     }
 
