@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from './constants'
+import { INCREMENT } from './constants'
 //定义reducer函数
 const initState = {
   count: 0,
@@ -10,11 +10,6 @@ export default function (state = initState, action) {
       return {
         ...state,
         count: state.count + action.data,
-      }
-    case DECREMENT:
-      return {
-        ...state,
-        count: state.count - action.data,
       }
     default:
       return state
