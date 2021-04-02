@@ -1,20 +1,13 @@
-import { INCREMENT, DECREMENT } from './constants'
-//定义reducer函数
+import { SAVE_DATA } from './constants'
 const initState = {
-  count: 0,
-  msg: 'abc',
+  users: [],
 }
 export default function (state = initState, action) {
   switch (action.type) {
-    case INCREMENT:
+    case SAVE_DATA:
       return {
         ...state,
-        count: state.count + action.data,
-      }
-    case DECREMENT:
-      return {
-        ...state,
-        count: state.count - action.data,
+        users: action.data,
       }
     default:
       return state

@@ -1,2 +1,1 @@
-export const INCREMENT = 'INCREMENT'
-export const DECREMENT = 'DECREMENT'
+export const SAVE_DATA = 'SAVE_DATA'

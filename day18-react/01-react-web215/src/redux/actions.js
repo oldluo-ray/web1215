@@ -1,13 +1,8 @@
-// 为了方便,会将同样需求类型的action定义成一个函数
+import { SAVE_DATA } from './constants'
 
-import { INCREMENT, DECREMENT } from './constants'
-
-function inc(data) {
-  return { type: INCREMENT, data }
+// 定义返回action对象的函数
+function saveData(data) {
+  return { type: SAVE_DATA, data }
 }
 
-function dec(data) {
-  return { type: DECREMENT, data }
-}
-
-export { inc, dec }
+export { saveData }
