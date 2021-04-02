@@ -19,20 +19,20 @@ export default class List extends Component {
 
       if (data.length === 0) return
       // 发送请求
-
-      axios
-        .get('http://localhost:5000/search/users', {
-          params: {
-            searchname: data,
-          },
-        })
-        .then((res) => {
-          console.log(res)
-          // res.data.items
-          // 将res.data.items存储到redux
-          // console.log(this.props)
-          this.props.saveData(res.data.items)
-        })
+      this.props.getData(data)
+      // axios
+      //   .get('http://localhost:5000/search/users', {
+      //     params: {
+      //       searchname: data,
+      //     },
+      //   })
+      //   .then((res) => {
+      //     console.log(res)
+      //     // res.data.items
+      //     // 将res.data.items存储到redux
+      //     // console.log(this.props)
+      //     this.props.saveData(res.data.items)
+      //   })
     })
   }
 

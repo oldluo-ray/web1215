@@ -37,64 +37,58 @@ app.get('/search/users', function (req, res) {
       {
         login: 'zs',
         html_url: 'https://github.com/zs',
-        avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308265815&di=26173fe654f82477002c4ac99a0d2d78&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201810%2F05%2F20181005145859_uwmfo.jpg',
+        avatar_url: 'http://www.atguigu.com/teacher/new/lipeiqian.jpg',
         id: 1,
       },
       {
         login: 'ruanyf',
         html_url: 'https://github.com/ruanyf',
         avatar_url:
-          'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592298182&di=df0fed3433e52e434f6a5d0968a65b01&src=http://img.jk51.com/img_jk51/331878478.jpeg',
+          'https://pic4.zhimg.com/50/58e8de98f_720w.jpg?source=54b3c3a5',
         id: 2,
       },
       {
         login: 'yyx990803',
         html_url: 'https://github.com/yyx990803',
-        avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308265815&di=26173fe654f82477002c4ac99a0d2d78&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201810%2F05%2F20181005145859_uwmfo.jpg',
+        avatar_url: 'http://www.atguigu.com/teacher/new/yanhaijing.jpg',
         id: 3,
       },
       {
         login: 'zs',
         html_url: 'https://github.com/zs',
-        avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308333812&di=7a5448dfe3da8239d09d929edd02609e&imgtype=0&src=http%3A%2F%2Fimg0.imgtn.bdimg.com%2Fit%2Fu%3D1899454885%2C893965929%26fm%3D214%26gp%3D0.jpg',
+        avatar_url: 'http://www.atguigu.com/teacher/new/lipeiqian.jpg',
         id: 4,
       },
       {
         login: 'ruanyf',
         html_url: 'https://github.com/ruanyf',
         avatar_url:
-          'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592298182&di=df0fed3433e52e434f6a5d0968a65b01&src=http://img.jk51.com/img_jk51/331878478.jpeg',
+          'https://pic4.zhimg.com/50/58e8de98f_720w.jpg?source=54b3c3a5',
         id: 5,
       },
       {
         login: 'yyx990803',
         html_url: 'https://github.com/yyx990803',
-        avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308265815&di=26173fe654f82477002c4ac99a0d2d78&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201810%2F05%2F20181005145859_uwmfo.jpg',
+        avatar_url: 'http://www.atguigu.com/teacher/new/yanhaijing.jpg',
         id: 6,
       },
       {
         login: 'zs',
         html_url: 'https://github.com/zs',
-        avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308265815&di=26173fe654f82477002c4ac99a0d2d78&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201810%2F05%2F20181005145859_uwmfo.jpg',
+        avatar_url: 'http://www.atguigu.com/teacher/new/lipeiqian.jpg',
         id: 7,
       },
       {
         login: 'ruanyf',
         html_url: 'https://github.com/ruanyf',
         avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308265815&di=26173fe654f82477002c4ac99a0d2d78&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201810%2F05%2F20181005145859_uwmfo.jpg',
+          'https://pic4.zhimg.com/50/58e8de98f_720w.jpg?source=54b3c3a5',
         id: 8,
       },
       {
         login: 'yyx990803',
         html_url: 'https://github.com/yyx990803',
-        avatar_url:
-          'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1592308265821&di=bb3faa65d3dd2064691c1c2ce3c21b3c&imgtype=0&src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20180801%2F23%2F1533137219-lgdLqmcXsI.jpg',
+        avatar_url: 'http://www.atguigu.com/teacher/new/yanhaijing.jpg',
         id: 9,
       },
     ],
