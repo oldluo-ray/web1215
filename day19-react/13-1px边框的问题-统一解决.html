@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 3.45rem;
+        height: 1.5rem;
+        margin: 0.15rem;
+        background-color: skyblue;
+        /* 注意: 1px不参与适配 */
+        border: 1px solid black;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      function adapter() {
+        //  1. 计算根字体的大小
+        const rootFontSize = (document.documentElement.clientWidth * 100) / 375
+        document.documentElement.style.fontSize = rootFontSize + 'px'
+      }
+      adapter()
+      window.onresize = adapter
+
+      // 2. 通过修改viewport的inital-scale的值,让布局视口放大.
+      // 当前设备的像素比是多少,就放大多少倍
+      const viewport = document.querySelector('meta[name=viewport]')
+      console.log(viewport)
+      //计算inital-scale的值
+      const scale = 1 / window.devicePixelRatio //通过js获取像素比,计算scale的值
+      viewport.setAttribute(
+        'content',
+        'width=device-width, initial-scale=' + scale
+      )
+      // 此时1px就是被1个物理像素渲染.但是整个页面布局缩小.需要让整个页面布局恢复到原来的样子. 修改跟字体的大小. 让根字体 乘以 当前设备的像素比
+
+      // 先获取原来根字体的大小. 由于获取的值带px单位,所以使用parseInt去掉单位.然后再乘以 像素比.把这个计算好的值,再重新赋值给根字体
+      document.documentElement.style.fontSize =
+        parseInt(document.documentElement.style.fontSize) *
+          window.devicePixelRatio +
+        'px'
+    </script>
+  </body>
+</html>

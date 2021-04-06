@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 处理适配的方式: viewport方式. 直接将布局视口的宽度,设置为设计稿的宽度 
+      但是, 由于width赋值为数字,很多设备不支持.所以不推荐使用
+    -->
+    <!-- <meta name="viewport" content="width=375" /> -->
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* .box {
+        width: 345px;
+        height: 150px;
+        margin: 15px;
+        background-color: skyblue;
+      } */
+
+      /* .box {
+        width: 100vw;
+        height: 100vh;
+         width: 100%;
+        height: 100%; 
+        background-color: red;
+      } */
+
+      /* vw适配 */
+
+      .box {
+        width: 92vw;
+        height: 40vw;
+        margin: 4vw;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
