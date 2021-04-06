@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 3.45rem;
+        height: 1.5rem;
+        margin: 0.15rem;
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      function adapter() {
+        //  方式一适配:
+        // 1. 动态的计算跟字体的大小
+        // 当前设备独立像素的宽度 * 100 / 设计稿的宽度
+        const rootFontSize = (document.documentElement.clientWidth * 100) / 375
+        // 2. 赋值给根标签
+        document.documentElement.style.fontSize = rootFontSize + 'px'
+
+        // 3. 把样式中具体的xxxpx,改成rem
+        // 将设计稿的px的值除以100.px改为rem
+      }
+
+      adapter()
+
+      window.onresize = adapter
+    </script>
+  </body>
+</html>

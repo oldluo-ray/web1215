@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- width的取值 可以是数字, 可以是device-width  注意: 很多安卓不自持数字 -->
+    <!-- <meta name="viewport" content="width=200" /> -->
+    <!-- device-width 的值就是当前设备独立像素的宽度的值 -->
+    <!-- <meta name="viewport" content="width=device-width" /> -->
+    <!-- 控制布局视口的宽度,除了上面的witch还收inital-scale 
+    inital-scale 是由一个公式得到的
+
+    scale = 屏幕宽度(设备独立像素)  /  布局视口宽度。
+    
+    注意: 如果width和inital-scale所指向的布局视口的宽度不同,则哪个值大,就算哪个
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        height: 200px;
+        width: 100%;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      console.log(document.documentElement.clientWidth)
+    </script>
+  </body>
+</html>

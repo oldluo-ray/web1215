@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./方式二样式.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      /* .box {
+        width: 9.2rem;
+        height: 4rem;
+        margin: 0.4rem;
+        background-color: skyblue;
+      } */
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+    <script>
+      function adapter() {
+        // 1. 直接设置根标签字体是   设备独立像素 / 10
+        document.documentElement.style.fontSize =
+          document.documentElement.clientWidth / 10 + 'px'
+      }
+      adapter()
+      window.onresize = adapter
+    </script>
+  </body>
+</html>

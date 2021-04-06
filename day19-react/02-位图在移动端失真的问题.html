@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-size: 100%;
+      }
+
+      /* .img1 {
+        background-image: url('./assets/logo.png');
+      } */
+
+      /* .img2 {
+        background-image: url('./assets/logo@2x.png');
+      } */
+
+      /* 
+        位图在移动端失真的原因: 图片的一个位图像素,被屏幕的多个物理像素渲染了
+        
+        一个位图像素被一个物理像渲染就不会失真.
+      
+      
+       */
+      /* 解决办法: 使用2倍图,或3倍图 */
+      .img {
+        background-image: url('./assets/logo.png');
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio: 2) {
+        .img {
+          background-image: url('./assets/logo@2x.png');
+        }
+      }
+
+      @media screen and (-webkit-min-device-pixel-ratio: 3) {
+        .img {
+          background-image: url('./assets/logo@3x.png');
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="box img1"></div> -->
+    <!-- <div class="box img2"></div> -->
+
+    <div class="box img"></div>
+  </body>
+</html>

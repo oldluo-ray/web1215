@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* em和rem是相对单位,渲染的时候,会将值转成px的值去渲染
+        em 相对于谁? 直接父元素的font-size * em
+        rem 相对于谁? 根标签(html标签)的font-size * rem
+      
+       */
+
+      html {
+        font-size: 15px;
+      }
+      body {
+        font-size: 20px;
+      }
+      .box {
+        width: 10em;
+        height: 10rem;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
