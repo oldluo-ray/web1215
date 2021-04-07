@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <script>
+      // jquery.js是pc端使用的一个js库   点击事件: click
+      // zepto.js 针对移动端的一个js库   点击事件: tap
+      //注意:
+      // 1. 移动端事件只能在移动端使用
+      // 2. 在移动端使用touchstart作为点击事件时不正确的
+      // 在react脚手架中注册点击事件: pc端和移动端都使用click即可
+      box.addEventListener('touchstart', function () {
+        console.log('手指触摸到屏幕了')
+      })
+      box.addEventListener('touchmove', function () {
+        console.log('手指在屏幕上移动')
+      })
+      box.addEventListener('touchend', function () {
+        console.log('手指离开屏幕了')
+      })
+    </script>
+  </body>
+</html>

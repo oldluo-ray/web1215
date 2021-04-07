@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <script>
+      // 小结:
+      // 1. 如果要找到指定元素上的触点: e.targetTouches这个伪数组
+      // 2. 如果要找屏幕上的所有触点: e.touches 这个伪数组
+      // 3. 如果要找离开屏幕的触点:在touchend中找e.changedTouches 这个伪数组
+      box.addEventListener('touchstart', function (e) {
+        console.log(e)
+        console.log('手指触摸到屏幕了')
+      })
+      box.addEventListener('touchmove', function () {
+        console.log('手指在屏幕上移动')
+      })
+      box.addEventListener('touchend', function (e) {
+        console.log('手指离开屏幕了')
+        console.log(e)
+      })
+    </script>
+  </body>
+</html>

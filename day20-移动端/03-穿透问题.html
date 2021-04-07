@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body,
+      #app {
+        width: 100%;
+        height: 100%;
+      }
+      #app {
+        position: relative;
+      }
+      #banner {
+        width: 100%;
+        height: 200px;
+        background-color: orange;
+      }
+      #shade {
+        position: absolute;
+        text-align: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(1, 1, 1, 0.5);
+      }
+      h1 {
+        margin-top: 100px;
+      }
+
+      /* #link { */
+      /* 让a标签的点击行为失效 */
+      /* pointer-events: none; */
+      /* } */
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <a id="link" href="http://www.baidu.com">
+        <div id="banner"></div>
+      </a>
+      <div id="shade">
+        <h1>恭喜，一等奖</h1>
+        <button id="btn">点击关闭</button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      // 点击穿透的原因:
+      // touchstart先触发,让这遮盖层隐藏掉. 然后click事件,在刚在的位置上触发了,导致a标签被点击.执行了a标签的默认行为
+      const btn = document.getElementById('btn')
+      const shade = document.getElementById('shade')
+      btn.addEventListener('touchstart', (e) => {
+        // shade.style.display = 'none'
+        // setTimeout(() => {
+        //   link.style.pointerEvents = 'auto'
+        // }, 300)
+        // 在这里阻止默认形式,会导致click事件不触发
+        // e.preventDefault()
+
+        setTimeout(() => {
+          shade.style.display = 'none'
+        }, 300)
+      })
+
+      // link.addEventListener('touchstart', function () {
+      //   location.href = 'http://www.baidu.com'
+      // })
+    </script>
+  </body>
+</html>
