@@ -7,9 +7,12 @@ import {
   Button,
   WhiteSpace,
   Modal,
+  Toast,
 } from 'antd-mobile'
 // 引入表单校验的高阶组价函数
 import { createForm } from 'rc-form'
+
+import { verifyPhoneIsHave } from '../../../api/register'
 class RegisterPhone extends Component {
   state = {
     isDisabled: true,
@@ -56,6 +59,28 @@ class RegisterPhone extends Component {
     }
   }
 
+  // 校验手机号是否已经注册过的函数
+  verifyPhone = async () => {
+    // 1. 获取手机号
+    const { getFieldValue } = this.props.form
+
+    const phone = getFieldValue('phone')
+    // 2. 发送异步请求,询问服务器
+    const res = await verifyPhoneIsHave(phone)
+    // console.log(res)
+    if (res.data.success) {
+      // 说明手机号可以继续注册
+    } else {
+      // 说明手机号已经注册过了
+      // 先提示用户
+      Toast.fail(res.data.message, 2)
+      // 然后过几秒中后再跳转
+      setTimeout(() => {
+        this.props.history.push('/login')
+      }, 2000)
+    }
+  }
+
   render() {
     // RegisterPhone这个组件被createForm包裹了所以,可以通过props获取到form对象,这个对象可以结构出来一个函数getFieldProps. 可以用来实现调单校验
     const { getFieldProps } = this.props.form
@@ -66,7 +91,7 @@ class RegisterPhone extends Component {
           icon={<Icon type="left" color="#000" />}
           onLeftClick={() => console.log('onLeftClick')}
         >
-          硅谷注册登录
+          硅谷注册
         </NavBar>
         <WingBlank>
           {/* 第一个参数: 相当于就是给input添加了name属性,值为phone */}
@@ -93,6 +118,7 @@ class RegisterPhone extends Component {
               type="warning"
               disabled={this.state.isDisabled}
               className="login-btn"
+              onClick={this.verifyPhone}
             >
               下一步
             </Button>
