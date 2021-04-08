@@ -7,7 +7,7 @@ import {
   Button,
   WhiteSpace,
 } from 'antd-mobile'
-
+console.log('login组件加载了')
 export default class Login extends Component {
   render() {
     return (
