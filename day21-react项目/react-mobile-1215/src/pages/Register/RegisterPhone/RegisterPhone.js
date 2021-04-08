@@ -8,7 +8,12 @@ import {
   WhiteSpace,
   Modal,
 } from 'antd-mobile'
-export default class RegisterPhone extends Component {
+// 引入表单校验的高阶组价函数
+import { createForm } from 'rc-form'
+class RegisterPhone extends Component {
+  state = {
+    isDisabled: true,
+  }
   componentDidMount() {
     Modal.alert(
       '注册协议及隐私政策',
@@ -31,7 +36,29 @@ export default class RegisterPhone extends Component {
     )
   }
 
+  // 这个函数是在用户输入的过程中被触发,用户输入一个字符,这个函数就会被处罚一次
+  validator = (rules, value, cb) => {
+    // vlaue是用户输入的内容
+    // rules 是一个对象,里面存储了对应的表单项的name属性的值(这里没有使用需求)
+    // cb 是一个回调函数,如果表单校验通过,需要调用这个函数,但是我们这里也不需要
+    // console.log(value)
+    // 判断用户输入的value是否是一个手机号
+    if (/^1[3546789]\d{9}$/.test(value)) {
+      // 表示校验通过(将isDisabled的值改为false)
+      this.setState({
+        isDisabled: false,
+      })
+    } else {
+      //表示校验不通过
+      this.setState({
+        isDisabled: true,
+      })
+    }
+  }
+
   render() {
+    // RegisterPhone这个组件被createForm包裹了所以,可以通过props获取到form对象,这个对象可以结构出来一个函数getFieldProps. 可以用来实现调单校验
+    const { getFieldProps } = this.props.form
     return (
       <div className="wrap">
         <NavBar
@@ -42,7 +69,19 @@ export default class RegisterPhone extends Component {
           硅谷注册登录
         </NavBar>
         <WingBlank>
-          <InputItem placeholder="请输入手机号">
+          {/* 第一个参数: 相当于就是给input添加了name属性,值为phone */}
+          <InputItem
+            {...getFieldProps('phone', {
+              rules: [
+                {
+                  // 添加自定义校验规则,属性必须交validator
+                  // 值是一个函数
+                  validator: this.validator,
+                },
+              ],
+            })}
+            placeholder="请输入手机号"
+          >
             <div className="login-phone">
               <span>+86</span>
               <Icon type="down"></Icon>
@@ -50,7 +89,11 @@ export default class RegisterPhone extends Component {
           </InputItem>
           <WingBlank>
             <WhiteSpace size="xl"></WhiteSpace>
-            <Button type="warning" disabled className="login-btn">
+            <Button
+              type="warning"
+              disabled={this.state.isDisabled}
+              className="login-btn"
+            >
               下一步
             </Button>
           </WingBlank>
@@ -59,3 +102,5 @@ export default class RegisterPhone extends Component {
     )
   }
 }
+
+export default createForm()(RegisterPhone)
