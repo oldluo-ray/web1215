@@ -70,6 +70,20 @@ class RegisterPhone extends Component {
     // console.log(res)
     if (res.data.success) {
       // 说明手机号可以继续注册
+      Modal.alert('', '我们将发送验证码至: ' + phone, [
+        {
+          text: '不同意',
+          style: 'default',
+        },
+        {
+          text: '同意',
+          onPress: () => this.props.history.push('/register/code'),
+          style: {
+            backgroundColor: 'red',
+            color: '#fff',
+          },
+        },
+      ])
     } else {
       // 说明手机号已经注册过了
       // 先提示用户

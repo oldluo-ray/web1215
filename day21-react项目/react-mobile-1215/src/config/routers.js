@@ -11,6 +11,7 @@ const Login = React.lazy(() => import('../pages/Login/Login'))
 const RegisterPhone = React.lazy(() =>
   import('../pages/Register/RegisterPhone/RegisterPhone')
 )
+const RegisterCode = React.lazy(() => import('../pages/Register/RegisterCode'))
 
 // 定义路由表
 const routersArr = [
@@ -30,6 +31,10 @@ const routersArr = [
   {
     path: '/register/phone',
     component: RegisterPhone,
+  },
+  {
+    path: '/register/code',
+    component: RegisterCode,
   },
 ]
 
