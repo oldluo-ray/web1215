@@ -8,6 +8,9 @@
 import React from 'react'
 const Home = React.lazy(() => import('../pages/Home/Home'))
 const Login = React.lazy(() => import('../pages/Login/Login'))
+const RegisterPhone = React.lazy(() =>
+  import('../pages/Register/RegisterPhone/RegisterPhone')
+)
 
 // 定义路由表
 const routersArr = [
@@ -23,6 +26,10 @@ const routersArr = [
   {
     path: '/login',
     component: Login,
+  },
+  {
+    path: '/register/phone',
+    component: RegisterPhone,
   },
 ]
 

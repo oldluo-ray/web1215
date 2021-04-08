@@ -7,7 +7,7 @@ import {
   Button,
   WhiteSpace,
 } from 'antd-mobile'
-console.log('login组件加载了')
+import { Link } from 'react-router-dom'
 export default class Login extends Component {
   render() {
     return (
@@ -38,7 +38,7 @@ export default class Login extends Component {
             <WhiteSpace size="xl"></WhiteSpace>
             <div className="login-register">
               <span>账户密码登录</span>
-              <span>手机快速注册</span>
+              <Link to="/register/phone">手机快速注册</Link>
             </div>
           </WingBlank>
 

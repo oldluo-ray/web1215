@@ -31,7 +31,7 @@ body,
 }
 
 .login-btn {
-  border-radius: 30px;
+  border-radius: 30px !important;
 }
 
 .login-register {
