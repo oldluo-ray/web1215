@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+.wrap {
+  height: 100%;
+  background-color: #fff;
+}
+
+.login-phone {
+  display: flex;
+  align-items: center;
+}
+
+.login-code {
+  display: flex;
+  align-items: center;
+}
+.login-code .login-get {
+  /* background-color: pink; */
+  line-height: 30px;
+  padding: 0 10px;
+  border-left: 1px solid #ccc;
+  margin-left: 10px;
+  height: 30px;
+}
+
+.login-btn {
+  border-radius: 30px;
+}
+
+.login-register {
+  display: flex;
+  justify-content: space-between;
+  color: #ccc;
+}
+
+.login-other {
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  margin-top: 100px;
+  justify-content: space-around;
+}
+.login-other .line {
+  width: 100px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.login-oauth {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.login-icon {
+  font-size: 40px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+}
+
+.icon-github {
+  background-color: rgb(133, 128, 128);
+}
+.icon-wechat {
+  background-color: rgb(101, 192, 136);
+}
+.icon-qq {
+  background-color: rgb(130, 197, 228);
+}
+
+.login-bottom {
+  margin-top: 100px;
+  text-align: center;
+}
