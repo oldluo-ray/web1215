@@ -77,7 +77,12 @@ class RegisterPhone extends Component {
         },
         {
           text: '同意',
-          onPress: () => this.props.history.push('/register/code'),
+          onPress: () => {
+            // 把手机号存储到localStorage里面.因为多个页面要使用,传递的话,太麻烦了
+            localStorage.setItem('phone', phone)
+
+            this.props.history.push('/register/code')
+          },
           style: {
             backgroundColor: 'red',
             color: '#fff',
