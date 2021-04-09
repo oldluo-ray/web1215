@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        height: 100px;
+        background-color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" style="color: red; width: 100px" id="box">测试</div>
+    <script>
+      // 在js中获取元素样式的方式?
+      //   1. style   style只能获取行内样式 值是字符串带单位
+      console.log(box.style.color)
+      console.log(box.style.backgroundColor) //背景颜色不是写在行内,所以通过style拿不到
+      console.log(box.style.width) //背景颜色不是写在行内,所以通过style拿不到
+
+      //   2. offsetWidth offset/scroll/client 这些也只能拿到一些宽高,偏移量 .而是值是数字,不带单位
+      console.log(box.offsetWidth)
+
+      // 想获取通过css添加的样式,比如:背景颜色 应该如何获取?
+      // getComputedStyle是浏览器中的一个全局的方法,直接调用就可以.可以拿到当前元素上所有的样式(行内/css).而且也是字符串,带单位
+      //   const 元素样式对象 = getComputedStyle(元素)
+      const boxStyleObj = getComputedStyle(box)
+      console.log('===============================================')
+      console.log(boxStyleObj.width)
+      console.log(boxStyleObj.height)
+      console.log(boxStyleObj.color)
+      console.log(boxStyleObj.backgroundColor)
+    </script>
+  </body>
+</html>

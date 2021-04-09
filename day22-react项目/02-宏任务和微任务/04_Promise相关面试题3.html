@@ -8,8 +8,12 @@
     <script>
       /* 
 				宏:[]
-				微:[]
-        控制台: 
+				微:[ ]
+        控制台: 3 7 4 1 2 5
+
+
+        374125
+  
 			*/
       const first = () => {
         return new Promise((resolve, reject) => {
@@ -18,7 +22,7 @@
             console.log(7)
             setTimeout(() => {
               console.log(5)
-              resolve(6) //promise的状态只能执行一次
+              resolve(6)
             }, 0)
             resolve(1)
           })

@@ -73,7 +73,14 @@ export default class Login extends Component {
           <WingBlank>
             <WingBlank>
               <div className="login-oauth">
-                <i className="iconfont icon-github login-icon"></i>
+                <i
+                  className="iconfont icon-github login-icon"
+                  onClick={() => {
+                    // 给github发送请求,要求github授权登录
+                    window.location.href =
+                      'https://github.com/login/oauth/authorize?client_id=9e66c440e1aea39416e0'
+                  }}
+                ></i>
                 <i className="iconfont icon-wechat login-icon"></i>
                 <i className="iconfont icon-qq login-icon"></i>
               </div>

@@ -19,16 +19,12 @@
       //#endregion
 
       //代码一
-      // setTimeout(()=>{
+      // setTimeout(() => {
       //   console.log('setTimeout callback')
-      // },0)
+      // }, 0)
 
-      // Promise.resolve(1).then(
-      //   value => console.log('onResolved1',value)
-      // )
-      // Promise.resolve(2).then(
-      //   value => console.log('onResolved2',value)
-      // )
+      // Promise.resolve(1).then((value) => console.log('onResolved1', value))
+      // Promise.resolve(2).then((value) => console.log('onResolved2', value))
       // console.log('主线程')
 
       /*
@@ -61,16 +57,16 @@
        
 
       */
-      // setTimeout(() => {
-      //   console.log('setTimeout callback1')
-      //   Promise.resolve(5).then((value) => console.log('onResolved5'))
-      // })
-      // setTimeout(() => {
-      //   console.log('setTimeout callback2')
-      // })
+      setTimeout(() => {
+        console.log('setTimeout callback1')
+        Promise.resolve(5).then((value) => console.log('onResolved5'))
+      })
+      setTimeout(() => {
+        console.log('setTimeout callback2')
+      })
 
-      // Promise.resolve(3).then((value) => console.log('onResolved3'))
-      // Promise.resolve(4).then((value) => console.log('onResolved4'))
+      Promise.resolve(3).then((value) => console.log('onResolved3'))
+      Promise.resolve(4).then((value) => console.log('onResolved4'))
     </script>
   </body>
 </html>
