@@ -126,7 +126,14 @@ class RegisterPhone extends Component {
             })}
             placeholder="请输入手机号"
           >
-            <div className="login-phone">
+            <div
+              className="login-phone"
+              onClick={() => {
+                this.props.history.push('/country', {
+                  from: '/register/phone',
+                })
+              }}
+            >
               <span>+86</span>
               <Icon type="down"></Icon>
             </div>

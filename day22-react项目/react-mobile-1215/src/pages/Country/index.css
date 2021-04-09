@@ -1,0 +1,16 @@
+.am-list-body {
+  padding-right: 30px;
+}
+
+.list-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 90px;
+  right: 10px;
+  z-index: 9999999999999999;
+}
+.list-nav span {
+  margin-top: 8px;
+  color: pink;
+}

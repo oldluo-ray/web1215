@@ -9,6 +9,22 @@ import {
 } from 'antd-mobile'
 import { Link } from 'react-router-dom'
 export default class Login extends Component {
+  state = {
+    number: null,
+  }
+  // 注意: 从login跳到country. login就卸载了. 又从country跳回到login. login重新加载了一遍
+  componentDidMount() {
+    // 直接打开登录页面是没有number的, 如果从country跳过来,才有number
+    // console.log(this.props.location)
+    if (this.props.location.state) {
+      //从country调过来的
+      const number = this.props.location.state.number
+      this.setState({
+        number,
+      })
+    }
+  }
+
   render() {
     return (
       <div className="wrap">
@@ -24,10 +40,12 @@ export default class Login extends Component {
             <div
               className="login-phone"
               onClick={() => {
-                this.props.history.push('/country')
+                this.props.history.push('/country', {
+                  from: '/login',
+                })
               }}
             >
-              <span>+86</span>
+              <span>+{this.state.number ? this.state.number : 86}</span>
               <Icon type="down"></Icon>
             </div>
           </InputItem>
